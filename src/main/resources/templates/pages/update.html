@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>修改信息</title>
+</head>
+<body>
+<h1>修改用户</h1>
+<form th:action="@{/workerupdate}" method="post">
+  <p>
+    <input type="text" name="wid" th:value="${worker.wid}" readonly="true ">
+  </p>
+  <p>
+    <input type="text" name="wname" th:value="${worker.wname}">
+  </p>
+  <p>
+<!--    <input type="text" name="wsex" th:value="${worker.wsex}">-->
+    <input type="radio" value="男" th:checked="${worker.wsex == '男'}" name="wsex">男
+    <input type="radio" value="女" th:checked="${worker.wsex == '女'}"  name="wsex">女
+  </p>
+  <p>
+    <input type="text" name="wtel" th:value="${worker.wtel}">
+  </p>
+  <p>
+    <select name="deptid">
+      <option th:each="department:${departments}" th:value="${department.deptid}" th:selected="${department.deptid == worker.deptid}">
+        [[${department.dname}]]
+      </option>
+    </select>
+  </p>
+  <button>员工修改</button>
+</form>
+</body>
+</html>
